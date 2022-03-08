@@ -1,0 +1,964 @@
+package co.edu.uniquindio.controller;
+
+import co.edu.uniquindio.Aplicacion;
+import co.edu.uniquindio.model.Administrador;
+import co.edu.uniquindio.model.Cliente;
+import co.edu.uniquindio.model.DetalleVenta;
+import co.edu.uniquindio.model.Producto;
+import co.edu.uniquindio.model.Sede;
+import co.edu.uniquindio.model.TipoProducto;
+import co.edu.uniquindio.model.Venta;
+
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+//import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+public class TiendaController {
+
+	Aplicacion aplicacion;
+	//Parecido a un array list pero observable
+	ObservableList<Cliente> listaClientesData = FXCollections.observableArrayList();
+	ObservableList<Producto> listaProductosData = FXCollections.observableArrayList();
+	ObservableList<TipoProducto> listaTipoProducto = FXCollections.observableArrayList();
+	ObservableList<String> listaSedes = FXCollections.observableArrayList();
+	ObservableList<Venta> listaVentas = FXCollections.observableArrayList();
+
+	//Es para seleccionar un cliente
+	Cliente clienteSeleccionado;
+	Producto productoSeleccionado;
+	Venta ventaSeleccionada;
+
+	ComboBox<String> comboSedes = new ComboBox<>(listaSedes);
+	ComboBox<TipoProducto> comboTipoProducto1 = new ComboBox<>(listaTipoProducto);
+
+
+
+	//Es bueno tener casi el 100% de la interfaz antes de traer
+	//el codigo de la interfaz
+
+	@FXML
+	private ResourceBundle resources;
+
+	@FXML
+	private URL location;
+
+	@FXML
+	private TextField textIdentificacionCliente;
+
+	@FXML
+	private TextField textNombreCliente;
+
+	@FXML
+	private TextField textTelefonoCliente;
+
+	@FXML
+	private TextField textDireccionCliente;
+
+	@FXML
+	private TextField textFechaNacimientoCliente;
+
+	@FXML
+	private TextField textCorreoCliente;
+
+	@FXML
+	private TextField textCiudadCliente;
+
+	@FXML
+	private TextField textDepartamentoCliente;
+
+	@FXML
+	private Button btnNuevoCliente;
+
+	@FXML
+	private Button btnAgregarCliente;
+
+	@FXML
+	private Button btnActualizarCliente;
+
+	@FXML
+	private Button btnEliminarCliente;
+
+	@FXML
+	private TableView<Cliente> tableClientes;
+
+	@FXML
+	private TableColumn<Cliente, String> columnIdentificacion;
+
+	@FXML
+	private TableColumn<Cliente, String> columnNombre;
+
+	@FXML
+	private TableColumn<Cliente, String> columnTelefono;
+
+	@FXML
+	private TableColumn<Cliente, String> columnDireccion;
+
+	@FXML
+	private TableColumn<Cliente, String> columnFechaNacimiento;
+
+	@FXML
+	private TableColumn<Cliente, String> columnCorreo;
+
+	@FXML
+	private TableColumn<Cliente, String> columnCiudad;
+
+	@FXML
+	private TableColumn<Cliente, String> columnDepartamento;
+
+	//----------------Seccion Producto-------------------------
+
+	@FXML
+	private TextField textCodigoProducto;
+
+	@FXML
+	private TextField textNombreProducto;
+
+	//@FXML
+	//private TextField textPrecioProducto;
+
+	@FXML
+	private ComboBox<String> comboSedeProducto;
+
+	@FXML
+	private ComboBox<TipoProducto> comboTipoProducto;
+
+	@FXML
+	private TableView<Producto> tableProductos;
+
+	@FXML
+	private TableColumn<Producto, String> columnCodigoProducto;
+
+	@FXML
+	private TableColumn<Producto, String> columnNombreProducto;
+
+	@FXML
+	private TableColumn<Producto, String> columnSedeProducto;
+
+	@FXML
+	private TableColumn<Producto, String> columnTipoProducto;
+
+	@FXML
+	private TableColumn<DetalleVenta, String> columnPrecioProducto;
+
+	@FXML
+	private Button btnEliminarProducto;
+
+	@FXML
+	private Button btnNuevoProducto;
+
+	@FXML
+	private Button btnAgregarProdcuto;
+
+	@FXML
+	private Button btnActualizarProducto;
+
+
+	public TiendaController(){
+
+	}
+
+	//-----------------Eventos botones cliente-----------------------
+
+	@FXML
+	void btnActualizarEvent(ActionEvent event) {
+
+		actualizarCliente();
+	}
+
+
+	@FXML
+	void btnAgregarEvent(ActionEvent event) {
+
+		agregarCliente();
+
+	}
+
+
+
+	@FXML
+	void btnEliminarEvent(ActionEvent event) {
+
+		eliminarCliente();
+	}
+
+
+
+	@FXML
+	void btnNuevoEvent(ActionEvent event) {
+
+		nuevoCliente();
+	}
+
+	//---------------------Eventos botones Producto----------------------------
+
+	@FXML
+	void btnActualizarProductoEvent(ActionEvent event) {
+
+		actualizarProducto();
+
+	}
+	@FXML
+	void btnAgregarProductoEvent(ActionEvent event) {
+
+		agregarProducto();
+
+	}
+
+	@FXML
+	void btnEliminarProductoEvent(ActionEvent event) {
+		
+		eliminarProducto();
+
+	}
+
+	@FXML
+	void btnNuevoProductoEvent(ActionEvent event) {
+
+		nuevoProducto();
+
+	}
+	
+	
+
+	    @FXML
+	    private TableColumn<Administrador, String> columnNombrelistAdministrativos;
+
+	    @FXML
+	    private TableColumn<Venta, String> columnSedeVenta2;
+
+	    @FXML
+	    private TableColumn<Administrador, String> columnSedeVenta1;
+
+	    @FXML
+	    private Button buttonActualizarVenta;
+
+
+	    @FXML
+	    private TableView<Venta> tableMayorVenta;
+
+
+	    @FXML
+	    private TableColumn<Administrador, String> columnIdentificacionListAdministrativo;
+
+	    @FXML
+	    private Button buttonBuscarRango1;
+
+	    @FXML
+	    private Button buttonBuscarRango2;
+
+	    @FXML
+	    private ComboBox<String> ComboBoxSedeAdministrativo;
+
+
+	    @FXML
+	    private TableColumn<Venta, String> columnDepartamentoVenta1;
+
+	    @FXML
+	    private Button buttonEliminarVenta;
+
+	    @FXML
+	    private TableColumn<Venta, String> columnProductoVenta1;
+
+	    @FXML
+	    private TableColumn<Administrador, String> columnProductosDisponibles;
+
+	    @FXML
+	    private TableColumn<Venta, String> columnCodigoVenta1;
+
+	    @FXML
+	    private TableColumn<Venta, String> columnVentas1;
+
+	    @FXML
+	    private TableColumn<Venta, String> columnCantidadListAdministrativos;
+
+	    @FXML
+	    private TableColumn<Venta, String> columnClienteVenta1;
+
+	    @FXML
+	    private TableView<?> tableInfoSedeVenta;
+	    
+	    @FXML
+	    private TableView<Venta>tableListVentas;
+
+	    @FXML
+	    private ComboBox<String> ComboBoxClienteVenta1;
+
+	    @FXML
+	    private TableColumn<Venta, String> columnTipoVenta1;
+
+	    @FXML
+	    private TextField textRango2;
+
+
+
+	    @FXML
+	    private TextField textRango1;
+
+	    @FXML
+	    private TableColumn<Administrador, String> columnCodigoListAdministrativos;
+
+	    @FXML
+	    private ComboBox<String> ComboBoxSedeVenta1;
+
+	    @FXML
+	    private TableView<Administrador> tableProductoMasVendido;
+
+	    @FXML
+	    private TableColumn<Administrador, String> columnCodigoAdmistrativo;
+
+	    @FXML
+	    private TableColumn<Administrador, String> columnTipoProdcutoVenta;
+
+	    @FXML
+	    private TableColumn<Venta, String> columnCantidadVenta1;
+
+	    @FXML
+	    private TableView<Administrador> tableProductosDisponibles;
+
+
+	    @FXML
+	    private TableColumn<?, ?> columnTipoProductolist1;
+
+
+	    @FXML
+	    private TextField textCodigo1;
+
+	    @FXML
+	    private TextField TextCantidadVenta;
+
+	    @FXML
+	    private TableColumn<Venta, String> columnIdentificacionVenta;
+
+	
+
+	    @FXML
+	    private TableColumn<?, ?> columnDisponibilidad;
+
+	   
+
+	    @FXML
+	    private TableColumn<?, ?> columnPrecioAdministrativo2;
+
+	 
+
+	    @FXML
+	    private TableColumn<?, ?> columnProductolist1;
+
+	    @FXML
+	    private Button buttonBuscarCodigo;
+
+	   
+	    @FXML
+	    private TableColumn<?, ?> columnPrecioAdministrativo1;
+
+	
+	    @FXML
+	    void ComboBoxSedeVenta(ActionEvent event) {
+
+	    }
+
+	    @FXML
+	    void btnEliminarVentaEvent(ActionEvent event) {
+
+	    }
+
+	    @FXML
+	    void btnActualizarVentaEvent(ActionEvent event) {
+
+	    }
+
+	    @FXML
+	    void btnRealizarVentaEvent(ActionEvent event) {
+
+	    }
+
+	    @FXML
+	    void ComboBoxClienteVentas(ActionEvent event) {
+
+	    }
+
+	    @FXML
+	    void actionBuscar_Por_Rango1(ActionEvent event) {
+	    	
+	    	JOptionPane.showMessageDialog(null, aplicacion.obtenerProductoMayores(Double.parseDouble(textRango1.getText())));
+	    	
+	    	ArrayList<Venta> venta = aplicacion.obtenerProductoMayores(Double.parseDouble(textRango1.getText()));
+	    	
+	    	for (int i = 0; i < venta.size(); i++) {
+				JOptionPane.showInputDialog(venta.get(i));
+			}
+	    	
+	    	// punto Parcial Obtener Mayor Producto en una lista
+//	    	aplicacion.getProducto();
+//	    	
+//	    	TiendaElectronica tienda Electronica = new TiendaElectronica();
+//	    	listaAdministardor=tiendaElectronica.getlistaAdministardor();
+//
+//	    	for (int i = 0; i < listaAdministardor.size(); i++) {
+//	    	System.out.println(listaAdministardor.toString());
+//	    	}
+//
+//	    	listaProducto = tiendaElectronica.getListaProducto();
+//	    	for (int i = 0; i < 25; i++) {
+//	    	System.out.println( listaProducto.toString());
+//	    	for (int i = 0; i < tiendaElectronica.rangoMayor Precio(20000).size(); i++) {
+//	    	System.out.println(tiendaElectronica.rangoMayor Precio(20000).get(i));
+//	    	}
+	    }
+
+	    @FXML
+	    void actionBuscar_Por_Codigo(ActionEvent event) {
+	    	
+	    	Producto productoEncontrado = null;
+	    	
+	    	productoEncontrado = aplicacion.productoEncontrado(textCodigo1.getText());
+	    	
+	    	if (productoEncontrado != null) {
+	    		JOptionPane.showMessageDialog(null, productoEncontrado.getCodigo()); 
+			}
+	    	
+	    	else{
+	    		JOptionPane.showMessageDialog(null,"No encontrado");
+	    	}
+	    	
+	    }
+
+	    @FXML
+	    void actionBuscar_Por_Rango2(ActionEvent event) {
+
+	    }
+
+	    @FXML
+	    void ComboBoxSedeAdministrativos(ActionEvent event) {
+
+	    }
+
+	
+	
+
+	
+
+
+	@FXML
+	void initialize() {
+
+		//Llamar al metodo setEditable del combo y pasarle true
+		//Cuando se seleccione algo en la tabla se debe marcar en el combo
+
+
+		//Esta propiedad setea los datos que se le manda desde el modelo, se enlaza con el modelo.
+		//Por eso se le envian los parametros con los mismos nombres
+		//Aqui se identifca donde va cada variable
+		this.columnNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+		this.columnIdentificacion.setCellValueFactory(new PropertyValueFactory<>("identificacion"));
+		this.columnTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
+		this.columnDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
+		this.columnFechaNacimiento.setCellValueFactory(new PropertyValueFactory<>("fechaNacimiento"));
+		this.columnCorreo.setCellValueFactory(new PropertyValueFactory<>("correo"));
+		this.columnCiudad.setCellValueFactory(new PropertyValueFactory<>("ciudad"));
+		this.columnDepartamento.setCellValueFactory(new PropertyValueFactory<>("departamento"));
+
+		this.columnNombreProducto.setCellValueFactory(new PropertyValueFactory<>("nombreProducto"));
+		this.columnCodigoProducto.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+		this.columnSedeProducto.setCellValueFactory(new PropertyValueFactory<>("sede"));
+		//this.columnPrecioProducto.setCellValueFactory(new PropertyValueFactory<>("precio"));
+		this.columnTipoProducto.setCellValueFactory(new PropertyValueFactory<>("tipoProducto"));
+
+		this.columnIdentificacionVenta.setCellValueFactory(new PropertyValueFactory<>("identicacion"));
+		this.columnSedeVenta2.setCellValueFactory(new PropertyValueFactory<>("sede"));
+		this.columnCodigoVenta1.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+
+		//comboSedeProducto.setEditable(true);
+		//comboTipoProducto.setEditable(true);
+		//Es un evento para captar un objeto seleccionado de la tabla o seleccion de la tabla,
+		//Cuando se genera se llama al metodo mostrarInformacion
+
+		tableClientes.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+
+			clienteSeleccionado = newSelection;
+			mostrarInformacionCliente(clienteSeleccionado);
+		});
+
+		comboSedeProducto.setOnAction(e -> System.out.println("Action Nueva Selección: " + comboSedeProducto.getValue()));
+
+		comboSedeProducto.valueProperty().addListener((ov, p1, p2) -> {
+			System.out.println("Nueva Selección: " + p2);
+			System.out.println("Vieja Selección: " + p1);
+		});
+		comboTipoProducto.setOnAction(e -> System.out.println("Action Nueva Selección: " + comboSedeProducto.getValue()));
+
+		comboTipoProducto.valueProperty().addListener((ov, p1, p2) -> {
+			System.out.println("Nueva Selección: " + p2);
+			System.out.println("Vieja Selección: " + p1);
+		});
+
+		tableProductos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+
+			productoSeleccionado = newSelection;
+			mostrarInformacionProducto(productoSeleccionado);
+		});
+		
+		ObservableList <String> listaSedes = FXCollections.observableArrayList();
+		ObservableList <String> listaClientes = FXCollections.observableArrayList();
+		
+		listaSedes.addAll("Armenia", "Calarca", "Medellin");
+		listaClientes.addAll("1097", "0420", "3381");
+
+		ComboBoxSedeVenta1.setItems(listaSedes);
+		ComboBoxClienteVenta1.setItems(listaClientes);
+		ComboBoxSedeAdministrativo.setItems(listaSedes);
+
+		textCodigo1.setText("1664");
+		
+		
+		tableListVentas.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+
+			ventaSeleccionada = newSelection;
+			mostrarInformacionVenta(ventaSeleccionada);
+		});
+
+	}
+
+
+	private void mostrarInformacionVenta(Venta ventaSeleccionada) {
+		if(productoSeleccionado != null){
+			
+			TextCantidadVenta.setText(ventaSeleccionada.getCodigo());
+			columnIdentificacionVenta.setText(ventaSeleccionada.getCodigo());
+//			ComboBoxClienteVenta1
+		}
+		
+	}
+
+	private void mostrarInformacionProducto(Producto productoSeleccionado) {
+
+
+		if(productoSeleccionado != null){
+
+
+			textNombreProducto.setText(productoSeleccionado.getNombreProducto());
+			textCodigoProducto.setText(productoSeleccionado.getCodigo());
+			comboSedeProducto.setValue(productoSeleccionado.getSede());
+			comboTipoProducto.setValue(productoSeleccionado.getTipoProducto());
+			//textCodigoProducto.setText(productoSeleccionado.getCodigo());
+
+		}
+
+	}
+
+	public void setAplicacion(Aplicacion aplicacion) {
+
+		this.aplicacion = aplicacion;
+		//Este metodo limpia la tabla
+		tableClientes.getItems().clear();
+		tableProductos.getItems().clear();
+		comboSedes.getItems().clear();
+		comboTipoProducto1.getItems().clear();
+
+		tableProductos.setItems(getListaProductosData());
+		tableClientes.setItems(getListaClientesData());
+		tableListVentas.setItems(getListaVentasData());
+		comboSedeProducto.setItems(getListaSedes());
+		comboTipoProducto.setItems(getListaTipoProductos());
+
+	}
+
+	private ObservableList<TipoProducto> getListaTipoProductos() {
+
+
+		listaTipoProducto.addAll(aplicacion.obtenerTipoProductos()); 
+
+		return listaTipoProducto;
+	}
+
+	public ObservableList<String> getListaSedes() {
+		// TODO Auto-generated method stub
+		listaSedes.addAll(aplicacion.obtenerSedes());
+		return listaSedes;
+	}
+
+
+	public ObservableList<Cliente> getListaClientesData() {
+
+		listaClientesData.addAll(aplicacion.obtenerClientes());
+		return listaClientesData;
+	}
+
+	public ObservableList<Producto> getListaProductosData() {
+
+		listaProductosData.addAll(aplicacion.obtenerProductos());
+		return listaProductosData;
+	}
+
+	public ObservableList<Venta> getListaVentasData() {
+
+		listaVentas.addAll(aplicacion.obtenerVentas());
+		return listaVentas;
+	}
+
+	private void mostrarInformacionCliente(Cliente clienteSeleccionado) {
+
+
+		if(clienteSeleccionado != null){
+			textNombreCliente.setText(clienteSeleccionado.getNombre());
+			textIdentificacionCliente.setText(clienteSeleccionado.getIdentificacion());
+			textTelefonoCliente.setText(clienteSeleccionado.getTelefono());
+			textDireccionCliente.setText(clienteSeleccionado.getDireccion());
+			textCorreoCliente.setText(clienteSeleccionado.getCorreo());
+			textFechaNacimientoCliente.setText(clienteSeleccionado.getFechaNacimiento());
+			textCiudadCliente.setText(clienteSeleccionado.getCiudad());
+			textDepartamentoCliente.setText(clienteSeleccionado.getDepartamento());
+		}
+	}
+
+	private void nuevoCliente() {
+
+		textNombreCliente.setText("Ingrese Nombre");
+		textIdentificacionCliente.setText("Ingrese Identificacion");
+		textTelefonoCliente.setText("Ingrese telefono");
+		textDireccionCliente.setText("Ingrese direccion");
+		textCorreoCliente.setText("Ingrese correo");
+		textFechaNacimientoCliente.setText("Ingrese fecha nacimiento");
+		textCiudadCliente.setText("Ingrese ciudad");
+		textDepartamentoCliente.setText("Ingrese departamento");
+
+	}
+
+	private void nuevoProducto(){
+		textNombreProducto.setText("Ingrese Nombre");
+		textCodigoProducto.setText("Ingrese producto");
+		comboSedeProducto.setValue("Seleccione");
+
+	}
+
+	private void agregarProducto(){
+
+		String nombreProducto = textNombreProducto.getText();
+		String codigoProducto = textCodigoProducto.getText();
+		String sede = comboSedeProducto.getValue();
+		TipoProducto tipoProducto = comboTipoProducto.getValue();
+
+		if(validarDatosProducto(nombreProducto,codigoProducto,sede,tipoProducto)){
+
+			Producto producto = null;
+
+			producto = aplicacion.crearProducto(nombreProducto,codigoProducto,sede,tipoProducto);
+
+			if(producto != null){
+				listaProductosData.add(producto);
+				limpiarCamposTexto();
+				mostrarMensaje("Notificacion Producto","Producto registrado","El producto se ha registrado con exito",AlertType.INFORMATION);
+			}
+			else{
+				mostrarMensaje("Notificacion Producto","Producto no registrado","El producto no se registro",AlertType.INFORMATION);
+			}
+
+
+		}
+	}
+
+
+	private boolean validarDatosProducto(String nombreProducto, String codigoProducto, String sede,
+			TipoProducto tipoProducto) {
+
+		String mensaje ="";
+		if(nombreProducto == null || nombreProducto.equals("")){
+			mensaje+= "El nombre es invalido \n";
+		}
+
+		if(codigoProducto == null || codigoProducto.equals("")){
+			mensaje+= "El Codigo es invalido \n";
+		}
+		if(sede == null || sede.equals("")){
+			mensaje+= "La Sede es invalida \n";
+		}
+		if(tipoProducto == null || tipoProducto.equals("")){
+			mensaje+= "El tipo de producto es invalido \n";
+		}
+
+
+		if(mensaje.equals("")){
+			return true;
+		}else{
+
+			mostrarMensaje("Notificacion Producto","Datos invalidos",mensaje,AlertType.WARNING);
+		}
+
+		return false;
+	}
+
+
+	private void agregarCliente() {
+
+		//Primero se capturan los datos
+
+		//Si se requiere un entero, se parsea
+		String nombre = textNombreCliente.getText();
+		String identificacion = textIdentificacionCliente.getText();
+		String telefono = textTelefonoCliente.getText();
+		String direccion = textDireccionCliente.getText();
+		String fechaNacimiento = textFechaNacimientoCliente.getText();
+		String correo = textCorreoCliente.getText();
+		String departamento = textDepartamentoCliente.getText();
+		String ciudad = textCiudadCliente.getText();
+
+
+		//Se valida la informacion
+		if(validarDatos(nombre, identificacion, telefono,direccion,fechaNacimiento,correo,departamento,ciudad)){
+
+			//Se crea un cliente
+			Cliente cliente = null;
+
+			cliente = aplicacion.crearCliente(nombre, identificacion, telefono,direccion,fechaNacimiento,correo,departamento,ciudad);
+
+			if(cliente != null){
+				listaClientesData.add(cliente);
+				limpiarCamposTexto();
+				mostrarMensaje("Notificacion Cliente","Cliente registrado","El cliente se ha registrado con exito",AlertType.INFORMATION);
+			}
+			else{
+				mostrarMensaje("Notificacion Cliente","Cliente no registrado","El cliente no se registro",AlertType.INFORMATION);
+			}
+
+		}
+
+		//Registrar
+	}
+
+	private void limpiarCamposTexto() {
+
+		textNombreCliente.setText("");
+		textIdentificacionCliente.setText("");
+		textTelefonoCliente.setText("");
+		textDireccionCliente.setText("");
+		textDepartamentoCliente.setText("");
+		textCiudadCliente.setText("");
+		textFechaNacimientoCliente.setText("");
+		textCorreoCliente.setText("");
+		textNombreProducto.setText("");
+		textCodigoProducto.setText("");
+		comboSedeProducto.setValue("");
+
+	}
+
+	private void eliminarCliente() {
+
+		boolean flagClienteEliminado = false;
+		if(clienteSeleccionado!= null){
+			flagClienteEliminado = aplicacion.eliminarCliente(clienteSeleccionado.getIdentificacion());
+
+			if(mostrarMensajeConfirmacion("¿Esta seguro de eliminar el cliente?") == true){
+
+				if(flagClienteEliminado == true){
+					listaClientesData.remove(clienteSeleccionado);
+					clienteSeleccionado = null;
+					//Quita la seleccion de la tabla
+					tableClientes.getSelectionModel().clearSelection();
+					limpiarCamposTexto();
+					mostrarMensaje("Notificacion Cliente","Cliente eliminado","El cliente se ha elimnado con exito",AlertType.WARNING);
+
+
+				}else{
+
+					mostrarMensaje("Notificacion Cliente","Cliente no eliminado","El cliente no se puede eliminar",AlertType.WARNING);
+
+				}
+			}
+
+		}else{
+			mostrarMensaje("Notificacion Cliente","Cliente no seleccionado","Debe seleccionar un cliente",AlertType.WARNING);
+
+		}
+
+	}
+	
+	private void eliminarProducto() {
+
+		boolean flagProductoEliminado = false;
+		
+		if(productoSeleccionado!= null){
+			flagProductoEliminado = aplicacion.eliminarProducto(productoSeleccionado.getCodigo());
+
+			if(mostrarMensajeConfirmacion("¿Esta seguro de eliminar el producto?") == true){
+
+				if(flagProductoEliminado == true){
+					listaProductosData.remove(productoSeleccionado);
+					productoSeleccionado = null;
+					//Quita la seleccion de la tabla
+					tableProductos.getSelectionModel().clearSelection();
+					limpiarCamposTexto();
+					mostrarMensaje("Notificacion Producto","Producto eliminado","El producto se ha elimnado con exito",AlertType.WARNING);
+
+
+				}else{
+
+					mostrarMensaje("Notificacion Producto","Producto no eliminado","El producto no se puede eliminar",AlertType.WARNING);
+
+				}
+			}
+
+		}else{
+			mostrarMensaje("Notificacion Producto","Producto no seleccionado","Debe seleccionar un producto",AlertType.WARNING);
+
+		}
+
+	}
+
+	private boolean mostrarMensajeConfirmacion(String mensaje) {
+
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle(null);
+		alert.setHeaderText("Confirmacion");
+		alert.setContentText(mensaje);
+		Optional<ButtonType> action = alert.showAndWait();
+
+		if(action.get() == ButtonType.OK){
+			return true;
+		}else{
+
+			return false;
+		}
+	}
+
+	private void mostrarMensaje(String titulo,String header,String contenido, AlertType alertType) {
+
+		Alert alert = new Alert(alertType);
+		alert.setTitle(titulo);
+		alert.setHeaderText(header);
+		alert.setContentText(contenido);
+		alert.showAndWait();
+
+
+	}
+
+	private boolean validarDatos(String nombre, String identificacion, String telefono, String direccion, String fechaNacimiento, String correo, String departamento, String ciudad) {
+
+		String mensaje ="";
+		if(nombre == null || nombre.equals("")){
+			mensaje+= "El nombre es invalido \n";
+		}
+
+		if(identificacion == null || identificacion.equals("")){
+			mensaje+= "El nombre es invalido \n";
+		}
+		if(telefono == null || telefono.equals("")){
+			mensaje+= "El nombre es invalido \n";
+		}
+		if(direccion == null || direccion.equals("")){
+			mensaje+= "La direccion es invalida \n";
+		}
+		if(fechaNacimiento == null || fechaNacimiento.equals("")){
+			mensaje+= "La fecha de nacimiento es invalida \n";
+		}
+		if(correo == null || correo.equals("")){
+			mensaje+= "El correo es invalido \n";
+		}
+		if(departamento == null || departamento.equals("")){
+			departamento+= "El departamento es invalido \n";
+		}
+
+		if(ciudad == null || ciudad.equals("")){
+			mensaje+= "La ciudad es invalida \n";
+		}
+
+		if(mensaje.equals("")){
+			return true;
+		}else{
+
+			mostrarMensaje("Notificacion Cliente","Datos invalidos",mensaje,AlertType.WARNING);
+		}
+
+		return false;
+	}
+
+	private void actualizarCliente() {
+
+		String nombre = textNombreCliente.getText();
+		String identificacion = textIdentificacionCliente.getText();
+		String telefono = textTelefonoCliente.getText();
+		String direccion = textDireccionCliente.getText();
+		String fechaNacimiento = textDireccionCliente.getText();
+		String correo = textCorreoCliente.getText();
+		String departamento = textDepartamentoCliente.getText();
+		String ciudad = textCiudadCliente.getText();
+
+
+
+		boolean flagClienteActualizado = false;
+		if(clienteSeleccionado!= null){
+
+
+			if(validarDatos(nombre,identificacion,telefono, direccion, fechaNacimiento, correo, departamento, ciudad)){
+
+				flagClienteActualizado = aplicacion.actualizarCliente(clienteSeleccionado.getIdentificacion(),nombre, identificacion,telefono,direccion
+						,fechaNacimiento,correo,departamento,ciudad);
+
+				if(flagClienteActualizado == true){
+	//				tableClientes.refresh();
+
+					mostrarMensaje("Notificacion Cliente","Cliente  actualizado","El cliente se ha actualizado con exito",AlertType.WARNING);
+
+				}else{
+					mostrarMensaje("Notificacion Cliente","Cliente no actualizado","El cliente no se ha actualizado",AlertType.WARNING);
+				}
+
+			}
+
+
+		}else {
+			mostrarMensaje("Notificacion Cliente","Cliente no seleccionado","Por favor seleccione un cliente",AlertType.WARNING);
+		}
+
+	}
+
+	private void actualizarProducto() {
+
+		String nombreProducto = textNombreProducto.getText();
+		String codigoProducto = textCodigoProducto.getText();
+		String sede = comboSedeProducto.getValue();
+		TipoProducto tipoProducto = comboTipoProducto.getValue();
+
+		boolean flagProductoActualizado = false;
+		if(productoSeleccionado!= null){
+
+
+			if(validarDatosProducto(nombreProducto,codigoProducto,sede, tipoProducto)){
+
+				flagProductoActualizado = aplicacion.actualizarProducto(productoSeleccionado.getCodigo(),nombreProducto, codigoProducto,sede,tipoProducto);
+
+				if(flagProductoActualizado == true){
+			//		tableProductos.refresh();
+
+					mostrarMensaje("Notificacion Producto","Producto  actualizado","El producto se ha actualizado con exito",AlertType.CONFIRMATION);
+
+				}else{
+					mostrarMensaje("Notificacion Producto","Producto no actualizado","El producto no se ha actualizado",AlertType.WARNING);
+				}
+
+			}
+
+
+		}else {
+			mostrarMensaje("Notificacion Producto","Producto no seleccionado","Por favor seleccione un producto",AlertType.WARNING);
+		}
+
+	}
+}

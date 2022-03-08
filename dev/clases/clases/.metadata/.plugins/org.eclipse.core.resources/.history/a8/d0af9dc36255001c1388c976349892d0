@@ -1,0 +1,209 @@
+package co.uniquindio.edu.parqueadero.model;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import co.uniquindio.edu.parqueadero.exception.VehiculoException;
+
+/**
+ * Clase parqueadero
+ * 
+ * @author Admin
+ *
+ */
+public class Parqueadero {
+
+	// ---------------------------------------------------------------------------
+	// ATRIBUTOS
+	// ---------------------------------------------------------------------------
+	private String nombre;
+	private ArrayList<Propietario> listaPropietarios;
+
+
+	/**
+	 * Constructor de la clase parqueadero
+	 */
+	public Parqueadero(String nombre) {
+
+		listaPropietarios = new ArrayList<Propietario>();
+
+		this.nombre = nombre;
+
+		inicializarDatos();
+	}
+
+	private void inicializarDatos() {
+		Propietario propietario = new Propietario("Carlos","Masculino","123","2130312","2000-08-21");
+		getListaPropietarios().add(propietario);
+		
+		propietario = new Propietario("Juana","Femenino","124","2130313","1998-07-10");
+		getListaPropietarios().add(propietario);
+		
+		propietario = new Propietario("Pedro","Masculino","125","2130314","1997-04-06");
+		getListaPropietarios().add(propietario);
+		
+		propietario = new Propietario("Daniela","Femenino","126","2130315","1994-12-16");
+		getListaPropietarios().add(propietario);
+	}
+
+	// ---------------------------------------------------------------------------
+	// METODOS SET Y GET
+	// ---------------------------------------------------------------------------
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	//Asignar y Obtener Lista
+	public ArrayList<Propietario> getListaPropietarios() {
+		return listaPropietarios;
+	}
+
+	public void setListaPropietarios(ArrayList<Propietario> listaPropietarios) {
+		this.listaPropietarios = listaPropietarios;
+	}
+
+	@Override
+	public String toString() {
+		return "Parqueadero [nombre=" + nombre + ", listaPropietarios=" + listaPropietarios + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Parqueadero other = (Parqueadero) obj;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
+	}
+
+	/**
+	 * Metodo crearVehiculo
+	 * 
+	 * @param placa
+	 * @param modelo
+	 * @param tipoVehiculo
+	 * @param identificacionPropietario
+	 * @throws VehiculoException
+	 */
+
+//	public String crearVehiculo(String placa, String modelo, TipoVehiculo tipoVehiculo, String identificacionPropietario)
+//			throws VehiculoException {
+//
+//		// Crear variables
+//		Vehiculo vehiculoEncontrado = null;
+//		Propietario propietario = null;
+//		String resultado = "No puede registrar mas Vehiculos";
+//		int posicion = -1;
+//
+//		// 1. buscar el vehiculo
+//		vehiculoEncontrado = obtenerVehiculo(placa);
+//		if (vehiculoEncontrado == null) {
+//
+//			// 2. Obtener el propietario
+//			propietario = obtenerPropietario(identificacionPropietario);
+//
+//			if (propietario != null) {
+//
+//				// 3. Obtener posicion disponible
+//				posicion = obtenerPosicionDisponibleVehiculo();
+//
+//				if (posicion != -1) {
+//
+//					// Vehiculo vehiculo = new Vehiculo(placa, modelo, tipoVehiculo, propietario);
+//					Vehiculo vehiculo = new Vehiculo();
+//					vehiculo.setPlaca(placa);
+//					vehiculo.setModelo(modelo);
+//					vehiculo.setTipoVehiculo(tipoVehiculo);
+//					vehiculo.setPropietario(propietario);
+//
+//					listaVehiculos[posicion] = vehiculo;
+//					resultado = "Vehiculo registrado" + listaVehiculos[posicion];
+//
+//				} else {
+//					throw new VehiculoException("No existe cupo para crear el vehiculo");
+//				}
+//
+//			} else {
+//				throw new VehiculoException("No existe un propietario para crear el vehiculo");
+//			}
+//
+//		} else {
+//			throw new VehiculoException("El vehiculo ya se encuentra registrado");
+//		}
+//
+//		return resultado;
+//
+//	}
+
+//	private Propietario obtenerPropietario(String identificacionPropietario) {
+//		// arreglo
+//		Propietario propietario = null;
+//
+//		for (int i = 0; i < listaPropietarios.length; i++) {
+//
+//			if (listaPropietarios[i] != null) {
+//				if (listaPropietarios[i].validarPlaca(identificacionPropietario)) {
+//					propietario = listaPropietarios[i];
+//					break;
+//				}
+//			}
+//		}
+//
+//		return propietario;
+//	}
+
+//	public String crearPropietario(String nombre, String identificacion, String telefono) {
+//		String mensaje = "No puede registrar mas propietarios";
+//		int posicion = -1;
+//
+//		posicion = obtenerPosicionDisponiblePropietario();
+//
+//		if (posicion != -1) {
+//			Propietario propietario = new Propietario();
+//			propietario.setIdentificacion(identificacion);
+//			propietario.setNombre(nombre);
+//			propietario.setTelefono(telefono);
+//
+//			listaPropietarios[posicion] = propietario;
+//			mensaje = "Propietario Registrado" + listaPropietarios[posicion];
+//		}
+//
+//		return mensaje;
+//	}
+
+//	private int obtenerPosicionDisponiblePropietario() {
+//		Propietario propietario = null;
+//		int posicion = -1;
+//
+//		for (int i = 0; i < listaPropietarios.length; i++) {
+//
+//			propietario = listaPropietarios[i];
+//
+//			if (propietario == null) {
+//				posicion = i;
+//				break;
+//			}
+//		}
+//
+//		return posicion;
+//	}
+
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="vista.VentanaObjetoController">
+   <children>
+      <Label layoutX="368.0" layoutY="267.0" text="Nombre" />
+      <ComboBox layoutX="436.0" layoutY="55.0" prefHeight="35.0" prefWidth="150.0" promptText="Revista" />
+      <ComboBox layoutX="436.0" layoutY="16.0" prefWidth="150.0" promptText="Libro" />
+      <ComboBox layoutX="436.0" layoutY="115.0" prefWidth="150.0" promptText="Video" />
+      <TextArea layoutX="14.0" layoutY="175.0" prefHeight="200.0" prefWidth="200.0" promptText="prestamo" />
+      <Button layoutX="155.0" layoutY="140.0" mnemonicParsing="false" text="Buscar" />
+      <ComboBox layoutX="436.0" layoutY="163.0" prefWidth="150.0" promptText="Amigo" />
+      <Label layoutX="29.0" layoutY="64.0" text="Fecha:" />
+      <Label layoutX="13.0" layoutY="107.0" text="Fecha devolucion:" />
+      <TextField layoutX="426.0" layoutY="263.0" prefHeight="25.0" prefWidth="142.0" />
+      <TextField layoutX="75.0" layoutY="60.0" />
+      <TextField layoutX="106.0" layoutY="103.0" prefHeight="25.0" prefWidth="124.0" />
+      <Label layoutX="369.0" layoutY="304.0" text="Telefono" />
+      <TextField layoutX="426.0" layoutY="221.0" prefHeight="25.0" prefWidth="142.0" />
+      <Label layoutX="372.0" layoutY="225.0" text="Cedula" />
+      <TextField layoutX="426.0" layoutY="303.0" prefHeight="25.0" prefWidth="142.0" />
+      <TextField layoutX="427.0" layoutY="343.0" prefHeight="25.0" prefWidth="142.0" />
+      <Label layoutX="368.0" layoutY="347.0" text="Direccion" />
+      <Label layoutX="20.0" layoutY="20.0" text="Numero:" />
+      <TextField layoutX="75.0" layoutY="16.0" />
+      <TextField layoutX="248.0" layoutY="16.0" promptText="nombre revista" />
+      <TextField layoutX="248.0" layoutY="58.0" promptText="codigoRevista" />
+      <TextField layoutX="248.0" layoutY="103.0" promptText="valorRevista" />
+   </children>
+</AnchorPane>

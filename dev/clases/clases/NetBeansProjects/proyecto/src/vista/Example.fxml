@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="452.0" prefWidth="611.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TabPane layoutX="-1.0" prefHeight="452.0" prefWidth="611.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Libro">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="423.0" prefWidth="591.0">
+                     <children>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="423.0" prefWidth="611.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <Text layoutX="27.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="codigo" />
+                                    <Text layoutX="27.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ValorLibro" />
+                                    <TextField fx:id="txtcodigo" layoutX="116.0" layoutY="53.0" prefHeight="25.0" prefWidth="217.0" promptText="Ingresa nombre" />
+                                    <TextField fx:id="txtvalorLibro" layoutX="117.0" layoutY="80.0" prefHeight="25.0" prefWidth="216.0" promptText="Ingresa autor" />
+                                    <Button fx:id="btnAgregarLibro" layoutX="29.0" layoutY="170.0" mnemonicParsing="false" onAction="#btnAgregarLibro" text="Agregar" />
+                                    <ComboBox fx:id="cboCategoriaLibro" layoutX="117.0" layoutY="138.0" onAction="#cboCategoriaLibro" prefHeight="25.0" prefWidth="216.0" promptText="Seleccione nombre" />
+                                    <Button fx:id="btnMostrarLibros" layoutX="99.0" layoutY="170.0" mnemonicParsing="false" onAction="#btnMostrarLibros" text="Mostrar Libros" />
+                                    <Button fx:id="btnActualizaLibro" layoutX="206.0" layoutY="170.0" mnemonicParsing="false" onAction="#btnActualizaLibro" text="Actualizar" />
+                                    <Button fx:id="btnEliminarLibro" layoutX="291.0" layoutY="170.0" mnemonicParsing="false" onAction="#btnEliminarLibro" text="Eliminar" />
+                                    <Button fx:id="btnConsultarLibro" layoutX="350.0" layoutY="15.0" mnemonicParsing="false" onAction="#btnConsultarLibro" text="Consultar Libro" />
+                                    <Text layoutX="32.0" layoutY="155.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nombreLibro" />
+                                    <TextField fx:id="txtnumPaginas" layoutX="115.0" layoutY="15.0" prefHeight="25.0" prefWidth="218.0" promptText="Ingrese un numero paginas" />
+                                    <Label layoutX="25.0" layoutY="19.0" text="numPaginas" />
+                                    <Button fx:id="btnLimpiarCamposLibro" layoutX="369.0" layoutY="170.0" mnemonicParsing="false" onAction="#btnLimpiarCamposLibro" text="Limpiar Campos" />
+                                    <TextField fx:id="txtEditorial" layoutX="117.0" layoutY="108.0" prefHeight="25.0" prefWidth="212.0" promptText="ingrese editorial" />
+                                    <Label layoutX="37.0" layoutY="112.0" text="editorial" />
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <TextArea fx:id="txtAreaLibro" layoutX="8.0" layoutY="7.0" prefHeight="194.0" prefWidth="592.0" />
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Estudiante">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <AnchorPane prefHeight="423.0" prefWidth="611.0">
+                           <children>
+                              <SplitPane dividerPositions="0.5261904761904762" orientation="VERTICAL" prefHeight="422.0" prefWidth="611.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="232.0" prefWidth="609.0">
+                                       <children>
+                                          <Label layoutX="33.0" layoutY="60.0" text="Nombre:" />
+                                          <Label layoutX="33.0" layoutY="99.0" text="Apellido:" />
+                                          <Label layoutX="36.0" layoutY="138.0" text="Genero:" />
+                                          <TextField fx:id="txtNombreEstudiante" layoutX="91.0" layoutY="56.0" prefHeight="25.0" prefWidth="218.0" promptText="Ingrese el nombre" />
+                                          <TextField fx:id="txtApellidoEstudiante" layoutX="91.0" layoutY="95.0" prefHeight="25.0" prefWidth="218.0" promptText="Ingrese el apellido" />
+                                          <ComboBox fx:id="cboGeneroEstudiante" layoutX="91.0" layoutY="134.0" onAction="#cboGeneroEstudiante" prefHeight="25.0" prefWidth="212.0" promptText="Seleccione Genero" />
+                                          <TextField fx:id="txtCedulaEstudiante" layoutX="91.0" layoutY="17.0" prefHeight="25.0" prefWidth="218.0" promptText="Ingrese la cedula" />
+                                          <Label layoutX="33.0" layoutY="21.0" text="Cedula:" />
+                                          <Button fx:id="btnLimpiarCamposEstudiante" layoutX="398.0" layoutY="179.0" mnemonicParsing="false" onAction="#btnLimpiarCamposEstudiante" text="Limpiar Campos" />
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                       <children>
+                                          <TextArea fx:id="txtAreaEstudiante" layoutX="9.0" layoutY="8.0" prefHeight="180.0" prefWidth="590.0" />
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                              <Button fx:id="btnEliminarEstudiante" layoutX="330.0" layoutY="179.0" mnemonicParsing="false" onAction="#btnEliminarEstudiante" text="Eliminar" />
+                              <Button fx:id="btnActualizarEstudiante" layoutX="245.0" layoutY="179.0" mnemonicParsing="false" onAction="#btnActualizarEstudiante" text="Actualizar" />
+                              <Button fx:id="btnMostrarEstudiantes" layoutX="110.0" layoutY="179.0" mnemonicParsing="false" onAction="#btnMostrarEstudiantes" text="Mostrar Estudiantes" />
+                              <Button fx:id="btnAgregarEstudiante" layoutX="39.0" layoutY="179.0" mnemonicParsing="false" onAction="#btnAgregarEstudiante" text="Agregar" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+          <Tab text="prestamo">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="424.0" prefWidth="611.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <Button fx:id="btnReservar" layoutX="28.0" layoutY="170.0" mnemonicParsing="false" onAction="#btnReservar" text="Reservar" />
+                                    <Button fx:id="btnMostrarReservas" layoutX="105.0" layoutY="170.0" mnemonicParsing="false" onAction="#btnMostrarReservas" text="Mostrar Reservas" />
+                                    <Label layoutX="28.0" layoutY="53.0" text="Nombre Libro:" />
+                                    <Label layoutX="30.0" layoutY="90.0" text="Estudiante:" />
+                                    <Label layoutX="28.0" layoutY="128.0" text="Bibliotecario:" />
+                                    <TextField fx:id="txtNombreLibroReserva" layoutX="121.0" layoutY="49.0" prefHeight="25.0" prefWidth="211.0" promptText="Ingrese el nombre del libro" />
+                                    <TextField fx:id="txtEstudianteReserva" layoutX="120.0" layoutY="86.0" prefHeight="25.0" prefWidth="213.0" promptText="Ingrese el nombre del estudiante" />
+                                    <Button fx:id="btnActualizarReserva" layoutX="237.0" layoutY="170.0" mnemonicParsing="false" onAction="#btnActualizarReserva" text="Actualizar" />
+                                    <Button fx:id="btnEliminarReserva" layoutX="323.0" layoutY="170.0" mnemonicParsing="false" onAction="#btnEliminarReserva" text="Eliminar" />
+                                    <ComboBox fx:id="cboBibliotecarioReserva" layoutX="120.0" layoutY="124.0" onAction="#cboBibliotecarioReserva" prefHeight="25.0" prefWidth="212.0" promptText="Seleccione Bibliotecario" />
+                                    <Label layoutX="29.0" layoutY="16.0" text="Identificación:" />
+                                    <TextField fx:id="txtIdentificacionReserva" layoutX="119.0" layoutY="12.0" prefHeight="25.0" prefWidth="218.0" promptText="Ingrese la Identificación" />
+                                    <Button fx:id="btnLimpiarCamposReserva" layoutX="395.0" layoutY="170.0" mnemonicParsing="false" onAction="#btnLimpiarCamposReserva" text="Limpiar Campos" />
+                                 </children></AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <TextArea fx:id="txtAreaReserva" layoutX="9.0" layoutY="7.0" prefHeight="193.0" prefWidth="594.0" />
+                                 </children></AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="videos">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

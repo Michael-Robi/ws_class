@@ -1,0 +1,55 @@
+- Crear una matriz de 4×4 con los números del 1 al 16. Mostrar por pantalla, tal como aparece en la matriz.
+- Suma de una fila que se pedirá al usuario (validar que si corresponda)
+- Suma de una columna que se pedirá al usuario (validar que si corresponda)
+- Sumar la diagonal principal
+- Obtener el promedio de los valores la matriz
+- Inicializar una matriz con unos el cuadro exterior
+- Crear una matriz de  tamaño 4x4 , en la cual se soliciten los datos
+  de la matriz al usuario. El programa debe de  verificar si la
+  matriz es simétrica o no, es decir si se obtiene la misma tabla
+  al cambiar las filas por las columnas.
+
+- Dadas dos matrices A y B, realice la suma de las dos en una nueva matriz C.
+	Ejemplo: A= { { 2, -1 } , { 3 , 2 } }  b= { { 0 , 1 } , { 4 , -2 } }   
+
+    A+B= C= { { 2 , 0 } , { 7 , 0 } }
+
+- Inicializar una Matriz en donde todos los elementos de la diagonal principal son 1 y  por encima potencias de 2
+- Determina si en una matriz existen por lo menos dos ceros consecutivos 
+	 * en una misma fila, o en la misma columna.
+  int [][]numconsecutivo= {{0,1,2,3},{0,6,7,8},{0,0,0,13},{15,16,0,0}};
+
+- Ejecutar e siguiente metodo e imprimir la matriz y ver que suscede
+
+	public static void espaciosPintados() {
+		
+		String [][] num=new String[7][5];
+		String numero=String.valueOf(1);
+		for (int i = 0; i < num[0].length; i++) {
+			for (int j = 0; j < num.length; j++) {
+				
+				if(i==0|| i==(num[0].length-1) ) {
+					num[j][i]=numero;
+				}
+			}
+		}
+		
+		for (int i = 0; i < num.length; i++) {
+			for (int j = 0; j < num[0].length; j++) {
+				if(i%2==0) {
+					num[i][j]=numero;
+				}
+				else if(j!=0&&j!=(num[0].length-1)){
+					num[i][j]=" ";
+				}	
+			}
+		}
+		
+		for (int i = 0; i < num.length; i++) {
+			for (int j = 0; j < num[0].length; j++) {
+				System.out.print(num[i][j]+"  ");
+			}
+			System.out.println();
+		}
+		
+	}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 3 elements from project &apos;co.uniquindio.edu.parqueaderofxGUI&apos;&#x0D;&#x0A;- Original project: &apos;co.uniquindio.edu.parqueaderofxGUI&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     co.uniquindio.edu.parqueaderofxGUI/src/application&#x0D;&#x0A;     application.Main.java&#x0D;&#x0A;     application.css" description="Delete elements" element1="/src&lt;application" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1638676772853" subPackages="false" version="1.0"/>
+</session>

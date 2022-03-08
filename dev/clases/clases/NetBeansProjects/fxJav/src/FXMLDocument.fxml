@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.paint.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="FXMLDocumentController">
+    <children>
+        <Button fx:id="button" layoutX="126" layoutY="90" onAction="#handleButtonAction" text="Click Me!" />
+        <Label fx:id="label" layoutX="57.0" layoutY="26.0" minHeight="16" minWidth="69" text="etiqueta 1" textFill="#000000f2">
+         <font>
+            <Font name="Courier New Bold Italic" size="18.0" />
+         </font></Label>
+      <ComboBox layoutX="85.0" layoutY="136.0" prefWidth="150.0">
+         <effect>
+            <Blend mode="SRC_ATOP" />
+         </effect>
+      </ComboBox>
+      <TextArea layoutX="74.0" layoutY="58.0" onDragDetected="#handleButtonAction" onDragDone="#handleButtonAction" onDragDropped="#handleButtonAction" onDragEntered="#handleButtonAction" prefHeight="23.0" prefWidth="200.0" />
+    </children>
+</AnchorPane>

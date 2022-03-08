@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="E:\yeny"/>
+			<item value="C:\Users\SONY\Downloads\Office MsVisio 2019\Office Ms Visio 2019"/>
+			<item value="D:\td\ws_class\dev\clases\clases\LibreriaJavaFx"/>
+			<item value="E:\sjsjjs\Proyecto-Final"/>
+			<item value="C:\Users\SONY\Desktop\Yeee"/>
+			<item value="D:\td\ws_class\dev\clases\clases"/>
+			<item value="D:\td\ws_class\dev\clases\classfx"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+</section>
